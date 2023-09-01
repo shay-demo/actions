@@ -17,8 +17,6 @@ runs:
       run: |
         echo "PATH_TO_ROOT=${{ github.action_path }}/../../.." >> $GITHUB_ENV
       shell: bash
-    - name: checkout
-      uses: actions/checkout@v3
     - name: install python and requirements
       uses: shay-demo/actions/actions/python/install_and_cache@main
     - name: get aws creds
