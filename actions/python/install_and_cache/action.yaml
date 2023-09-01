@@ -23,5 +23,5 @@ runs:
         restore-keys: |
           ${{ runner.os }}-pip-
           ${{ runner.os }}-
-    - run: pip install -r ${{ github.action_path }}/../../../dependencies/requirements.txt
+    - run: pip install -q -r ${{ github.action_path }}/../../../dependencies/requirements.txt
       shell: bash
