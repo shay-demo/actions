@@ -1,0 +1,29 @@
+name: install python and pip requirements and cache them
+description: 'install python and pip requirements and cache them'
+
+inputs:
+  PYTHON_VERSION:
+    required: false
+    default: '3.11'
+    description: ''
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '${{ inputs.PYTHON_VERSION }}'
+    - uses: 'actions/cache@v2'
+      id: cache
+      with:
+        # CAUTION: Replace this hardcoded "python3.7" dirname with
+        # the dirname providing your desired Python interpreter.
+        path: ${{ env.pythonLocation }}/lib/python${{ inputs.PYTHON_VERSION }}/site-packages/*
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
+    - run: pip install -q -r ${{ github.action_path }}/../../../dependencies/requirements.txt
+      shell: bash
+
+
