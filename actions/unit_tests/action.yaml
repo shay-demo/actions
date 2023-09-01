@@ -18,6 +18,8 @@ runs:
       run: |
         echo "PATH_TO_ROOT=${{ github.action_path }}/../.." >> $GITHUB_ENV
       shell: bash
+    - name: install python and requirements
+      uses: shay-demo/actions/actions/python/install_and_cache@main
     - name: run unit tests
       run: $PATH_TO_ROOT/scripts/run_file.sh ${{ inputs.unit_test_path }} ${{ inputs.unit_test_args }}
       shell: bash
