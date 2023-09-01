@@ -1,5 +1,5 @@
 name: build and deploy
-description: 'main templet for the backend services'
+description: 'build and deploy'
 
 
 inputs:
